@@ -11,8 +11,6 @@
  *
  */
 
-use std::collections::HashMap;
-
 // To conserve gas, efficient serialization is achieved through Borsh (http://borsh.io/)
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::serde::{Serialize, Deserialize};
@@ -26,7 +24,7 @@ setup_alloc!();
 // Note: the names of the structs are not important when calling the smart contract, but the function names are
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize)]
-pub struct Welcome {
+pub struct Blogs {
     records: LookupMap<String, String>,
     posts:UnorderedMap<usize,Post>,
     owner:AccountId,
@@ -41,7 +39,7 @@ pub struct Post {
     pub author: AccountId,
     pub id: usize,
 }
-impl Default for Welcome {
+impl Default for Blogs {
   fn default() -> Self {
     Self {
       records: LookupMap::new(b"records".to_vec()),
@@ -53,7 +51,7 @@ impl Default for Welcome {
 }
 
 #[near_bindgen]
-impl Welcome {
+impl Blogs {
     pub fn  get_owner(&self) ->String {
         let owner = self.owner.clone();
         owner

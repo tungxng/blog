@@ -26,6 +26,7 @@
 .env.production.local
 /.cache
 /.neardev
+/.contract/target
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
