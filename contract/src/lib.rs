@@ -13,6 +13,7 @@
 
 // To conserve gas, efficient serialization is achieved through Borsh (http://borsh.io/)
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
+use near_sdk::env::attached_deposit;
 use near_sdk::serde::{Serialize, Deserialize};
 use near_sdk::{env, near_bindgen, setup_alloc, serde, AccountId};
 use near_sdk::collections::{LookupMap, UnorderedMap};

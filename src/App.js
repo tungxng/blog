@@ -11,6 +11,9 @@ export default function App() {
     author: null,
   });
 
+  const [countId, setCountId] = React.useState({
+    count: 0,
+  });
   React.useEffect(() => {
     if (window.walletConnection.isSignedIn()) {
     }
@@ -23,7 +26,9 @@ export default function App() {
       body: body,
     });
     console.log(post_id);
-    alert("Post successfully!");
+    setCountId({ count: post_id });
+    let postId = countId.count;
+    alert("Post successfully!", { postId });
   }
   async function get_posts(id) {
     try {
@@ -89,6 +94,7 @@ export default function App() {
       </div>
       <main>
         <h1></h1>
+
         <div style={{ marginBottom: "20px" }}>
           <h2>Create posts</h2>
           <div style={{ marginBottom: "10px" }}>
@@ -105,6 +111,8 @@ export default function App() {
               Body <input id="body-post" type="text"></input>
             </div>
           </div>
+          <div>Posts id: {countId.count}</div>
+
           <button
             onClick={() => {
               let title = document.getElementById("title-post").value;
@@ -181,8 +189,8 @@ export default function App() {
                   <tr key={posts.id}>
                     <td style={{ width: "10%" }}>{posts.id}</td>
                     <td style={{ width: "20%" }}> {posts.title}</td>
-                    <td style={{ width: "50%" }}>{posts.author}</td>
-                    <td style={{ width: "20%" }}>{posts.body}</td>
+                    <td style={{ width: "50%" }}>{posts.body}</td>
+                    <td style={{ width: "20%" }}>{posts.author}</td>
                   </tr>
                 </thead>
               </table>
